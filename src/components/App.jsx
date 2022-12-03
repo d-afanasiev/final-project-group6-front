@@ -1,7 +1,6 @@
 import PrivateRoute from '../helpers/routes/PrivateRoute';
 import GoHome from '../helpers/routes/GoHome';
 import css from './App.module.css';
-import Footer from './Footer';
 import { Container, Loader } from '.';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from '../redux/auth';

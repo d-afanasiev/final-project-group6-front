@@ -24,7 +24,9 @@ function Balance({
   // const [activeState, setActiveState] = useState(false);
   const windowInnerWidth = window.innerWidth;
   const balance = useSelector(authSelectors.getUserBalance);
-  const userStartBalance = useSelector(authSelectors.getStartBalance);
+  const userStartBalance = useSelector(authSelectors.getUserBalance);
+
+  console.log(startBalance);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -67,13 +69,13 @@ function Balance({
             min="0"
             className={css.input}
             placeholder={balance ? balance : '0'}
-            disabled={startBalance !== null && 'disabled'}
+            disabled={startBalance !== '0' && 'disabled'}
             onChange={handleChange}
           ></input>
-          <span className={css.UA}> UAH</span>
-          {startBalance === null && <FirstModal />}
+          <span className={css.UA}> EURO</span>
+          {startBalance === '0' && <FirstModal />}
           {location.pathname === '/statistics' &&
-          windowInnerWidth < 1279 ? null : startBalance !== null ? (
+          windowInnerWidth < 1279 ? null : startBalance !== '0' ? (
             <button
               type="submit"
               className={css.disabledButton}

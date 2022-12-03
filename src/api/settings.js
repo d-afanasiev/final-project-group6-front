@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'https://final-project-group6-back.herokuapp.com/api/';
+const apiUrl = 'https://kapusta-back.onrender.com/api/';
 // const apiUrl = 'http://localhost:4321/api/';
 
 export const api = axios.create({
@@ -11,9 +11,9 @@ export const api = axios.create({
 export const tokenToAxios = {
   token: null,
   getToken() {
-    const item = localStorage.getItem('persist:auth')
+    const item = localStorage.getItem('persist:auth');
     if (!item) {
-      this.token = null
+      this.token = null;
     } else {
       const { token } = JSON.parse(item);
       if (token) {

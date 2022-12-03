@@ -28,19 +28,18 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  
   let date = new Date();
   let selectedMonth = date.getMonth() + 1;
   let selectedYear = date.getFullYear();
 
-  const token = useSelector(authSelectors.getToken)
+  const token = useSelector(authSelectors.getToken);
 
   const [month, setMonth] = useState(selectedMonth);
   const [year, setYear] = useState(selectedYear);
   const [active, setActive] = useState('Расход');
   const [stateDashboardButton, setStateDashboardButton] = useState(true);
 
-    useEffect(() => {
+  useEffect(() => {
     if (token) {
       dispatch(authOperations.fetchCurrentUser());
     }
@@ -82,72 +81,71 @@ function App() {
   }
 
   return (
-      <Suspense fallback={<Loader />}>
-        {location.pathname === '/' || location.pathname === '/statistics' ? (
-          <div className={css.backgroundLogin}></div>
-        ) : (
-          <div className={css.background}></div>
-        )}
-        <Container>
-          <Routes>
+    <Suspense fallback={<Loader />}>
+      {location.pathname === '/' || location.pathname === '/statistics' ? (
+        <div className={css.backgroundLogin}></div>
+      ) : (
+        <div className={css.background}></div>
+      )}
+      <Container>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <LayoutView
+                  month={month}
+                  year={year}
+                  onIncrement={onIncrement}
+                  onDecrement={onDecrement}
+                  active={active}
+                  stateDashboardButton={stateDashboardButton}
+                />
+              </PrivateRoute>
+            }
+          >
             <Route
-              path="/"
+              index
               element={
-                <PrivateRoute>
-                  <LayoutView
-                    month={month}
-                    year={year}
-                    onIncrement={onIncrement}
-                    onDecrement={onDecrement}
-                    active={active}
-                    stateDashboardButton={stateDashboardButton}
-                  />
-                </PrivateRoute>
-              }
-            >
-              <Route
-                index
-                element={
-                  <HomeView
-                    active={active}
-                    changeActiveState={changeActiveState}
-                    stateDashboardButton={stateDashboardButton}
-                    changestateDashboardButton={changestateDashboardButton}
-                  />
-                }
-              />
-              <Route
-                path="/statistics"
-                element={<StatisticsView month={month} year={year} />}
-              />
-            </Route>
-
-            <Route
-              path="/login"
-              element={
-                <GoHome>
-                  <LoginView />
-                </GoHome>
+                <HomeView
+                  active={active}
+                  changeActiveState={changeActiveState}
+                  stateDashboardButton={stateDashboardButton}
+                  changestateDashboardButton={changestateDashboardButton}
+                />
               }
             />
-
             <Route
-              path="*"
-              element={<h1 style={{ textAlign: 'center' }}>Not found!</h1>}
+              path="/statistics"
+              element={<StatisticsView month={month} year={year} />}
             />
-          </Routes>
-        </Container>
-        {location.pathname === '/' || location.pathname === '/statistics' ? (
-          <div className={css.wrapperBackgroundStatistic}>
-            <div className={css.backgroundStatistic}></div>
-          </div>
-        ) : (
-          <div className={css.backgroundCabbage}>
-            <div className={css.cabbageSmall}></div>
-          </div>
-        )}
-        <Footer />
-        </Suspense>
+          </Route>
+
+          <Route
+            path="/login"
+            element={
+              <GoHome>
+                <LoginView />
+              </GoHome>
+            }
+          />
+
+          <Route
+            path="*"
+            element={<h1 style={{ textAlign: 'center' }}>Not found!</h1>}
+          />
+        </Routes>
+      </Container>
+      {location.pathname === '/' || location.pathname === '/statistics' ? (
+        <div className={css.wrapperBackgroundStatistic}>
+          <div className={css.backgroundStatistic}></div>
+        </div>
+      ) : (
+        <div className={css.backgroundCabbage}>
+          <div className={css.cabbageSmall}></div>
+        </div>
+      )}
+    </Suspense>
   );
 }
 

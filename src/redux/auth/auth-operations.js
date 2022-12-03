@@ -4,7 +4,7 @@ import { Notify } from 'notiflix';
 import notifyError from '../../helpers/api/notifyError';
 import { tokenToAxios } from '../../api/settings';
 
-axios.defaults.baseURL = 'https://final-project-group6-back.herokuapp.com/';
+axios.defaults.baseURL = 'https://kapusta-back.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:4321/';
 
 const token = {
@@ -60,7 +60,6 @@ const logIn = createAsyncThunk(
 
 const logOut = createAsyncThunk('api/auth/logout', async (_, rejectValue) => {
   try {
-    
     // console.log('tokenAxios', tokenToAxios);
     await axios.post('api/auth/logout');
     tokenToAxios.unset();
@@ -133,7 +132,6 @@ const refreshToken = createAsyncThunk(
     }
   },
 );
-
 
 const renewToken = createAsyncThunk(
   'api/user/token/refresh',

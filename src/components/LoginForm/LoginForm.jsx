@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { authOperations} from '../../redux/auth';
+import { authOperations } from '../../redux/auth';
 import css from './LoginForm.module.css';
 
 function LoginForm() {
@@ -33,21 +33,25 @@ function LoginForm() {
   });
 
   const onSubmit = data => {
-    const { email, password } = data; 
+    const { email, password } = data;
     const userName = data.email?.split('@', 1);
 
     switch (actionType) {
       case 'login':
         dispatch(authOperations.logIn(data));
         return;
-      
+
       case 'register':
-        dispatch(authOperations.register({
-          email, password, userName: `${userName}`
-        }));
+        dispatch(
+          authOperations.register({
+            email,
+            password,
+            userName: `${userName}`,
+          }),
+        );
         // reset();
         return;
-      
+
       default:
         return;
     }
@@ -55,18 +59,7 @@ function LoginForm() {
 
   return (
     <div className={css.formContainer}>
-      <p className={css.googleText}>
-        Вы можете авторизоваться с помощью Google Account:
-      </p>
-      <a
-        className={css.google}
-        href="https://final-project-group6-back.herokuapp.com/api/auth/google"
-      >
-        Google
-      </a>
-      <p className={css.heading}>
-        Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
-      </p>
+      <p className={css.heading}>Введите e-mail и пароль:</p>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={css.form}
@@ -113,7 +106,7 @@ function LoginForm() {
                 maxLength: {
                   value: 10,
                   message: 'Допустимая длина не более 10 символов',
-                }
+                },
               })}
             ></input>
             <IconButton
@@ -137,7 +130,7 @@ function LoginForm() {
           >
             Войти
           </button>
-          <button
+          {/* <button
             type="submit"
             className={css.registrationLink}
             onClick={e => {
@@ -145,7 +138,7 @@ function LoginForm() {
             }}
           >
             Регистрация
-          </button>
+          </button> */}
         </div>
       </form>
     </div>

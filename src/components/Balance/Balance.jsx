@@ -70,7 +70,7 @@ function Balance({
             disabled={startBalance !== null && 'disabled'}
             onChange={handleChange}
           ></input>
-          <span className={css.UA}> UAH</span>
+          <span className={css.UA}> EURO</span>
           {startBalance === null && <FirstModal />}
           {location.pathname === '/statistics' &&
           windowInnerWidth < 1279 ? null : startBalance !== null ? (

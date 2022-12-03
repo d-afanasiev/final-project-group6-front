@@ -150,7 +150,7 @@
 
 .loginBtn {
   transition-duration: 0.7s;
-  margin-right: 15px;
+  margin: 0 auto;
 }
 .registrationLink {
    transition-duration: 0.7s;
@@ -192,7 +192,7 @@
     
     font-size: 12px;
     line-height: 14px;
-    text-align: left;
+    text-align: center;
     margin: 0;
     margin-bottom: 20px;
   }

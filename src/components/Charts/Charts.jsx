@@ -68,7 +68,7 @@ export default function Charts({ category, month, year }) {
         dy={-10}
         textAnchor="middle"
         fontSize={12}
-      >{`${value} euro`}</text>
+      >{`${value} EURO`}</text>
     );
   };
 
@@ -79,7 +79,7 @@ export default function Charts({ category, month, year }) {
 
   const MobileBarLabel = ({ x, y, width, value }) => (
     <text x={x + width / 1.1} y={y} textAnchor="middle" fontSize={10} dy={-10}>
-      {value ? `${value} euro` : ''}
+      {value ? `${value} EURO` : ''}
     </text>
   );
 

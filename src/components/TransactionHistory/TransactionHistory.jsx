@@ -64,10 +64,10 @@ function TransactionHistory({ data, type, category, handleDelete, status }) {
                 <span className={css.itemDesc}>{description}</span>
                 <span className={css.itemCategory}>{category}</span>
                 {type === 'income' && (
-                  <span className={css.itemSum}>{amount} euro</span>
+                  <span className={css.itemSum}>{amount} EURO</span>
                 )}
                 {type === 'expense' && (
-                  <span className={css.itemSumRed}>- {amount} euro</span>
+                  <span className={css.itemSumRed}>- {amount} EURO</span>
                 )}
                 <span className={css.itemBtn}>
                   <button className={css.itemBtn}>

@@ -53,12 +53,10 @@ export default function Charts({ category, month, year }) {
     }, [])
     .sort(sortBy('total'));
 
-
   let Data = newData.slice(0, 8);
 
   const dataChart = Data?.length ? Data : [0];
   // console.log('dataChart', dataChart);
-
 
   const renderCustomizedLabel = props => {
     const { x, y, width, value } = props;
@@ -70,7 +68,7 @@ export default function Charts({ category, month, year }) {
         dy={-10}
         textAnchor="middle"
         fontSize={12}
-      >{`${value}грн`}</text>
+      >{`${value} euro`}</text>
     );
   };
 
@@ -81,7 +79,7 @@ export default function Charts({ category, month, year }) {
 
   const MobileBarLabel = ({ x, y, width, value }) => (
     <text x={x + width / 1.1} y={y} textAnchor="middle" fontSize={10} dy={-10}>
-      {value ? `${value} грн` : ''}
+      {value ? `${value} euro` : ''}
     </text>
   );
 

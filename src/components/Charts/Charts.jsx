@@ -97,7 +97,7 @@ export default function Charts({ category, month, year }) {
       <BarChart
         style={{ marginRight: 'auto', marginLeft: 'auto' }}
         data={dataChart}
-        width={666}
+        width={760}
         height={422}
         margin={{ top: 40, right: 15, bottom: 20, left: 15 }}
       >

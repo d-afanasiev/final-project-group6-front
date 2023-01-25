@@ -24,14 +24,14 @@ const CostsAndIncome = ({ month, year }) => {
       <div className={css.transactionWrapper}>
         <p className={css.title}>Расходы:</p>
         <span className={css.redText}>
-          - {!expense.sum ? 0 : expense.sum} EURO
+          - {!expense.sum ? 0 : expense.sum.toFixed(2)} EURO
         </span>
       </div>
       <Band className={css.band} />
       <div className={css.transactionWrapper}>
         <p className={css.title}>Доходы:</p>
         <span className={css.greenText}>
-          + {!income.sum ? 0 : income.sum} EURO
+          + {!income.sum ? 0 : income.sum.toFixed(2)} EURO
         </span>
       </div>
     </div>

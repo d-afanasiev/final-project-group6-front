@@ -39,10 +39,9 @@ export default function ExpencesAndIncomes({
   const [dayTransactions, setDayTransactions] = useState([]);
   const [categotyValue, setCategotyValue] = useState(null);
   const [submit, setSubmit] = useState(false);
-  
+
   const formElement = useRef(null);
   const [reqStatus, setReqStatus] = useState('idle');
-
 
   useEffect(() => {
     if (submit && token) {
@@ -50,7 +49,6 @@ export default function ExpencesAndIncomes({
       setSubmit(false);
     }
   }, [dispatch, submit, token]);
-
 
   useEffect(() => {
     if (!type || !year || !month || !token) {
@@ -65,7 +63,6 @@ export default function ExpencesAndIncomes({
     fetchData();
   }, [month, token, type, year]);
 
-
   useEffect(() => {
     if (!type || !token) {
       return;
@@ -76,7 +73,6 @@ export default function ExpencesAndIncomes({
     }
     fetchLastHalfYearData();
   }, [token, type]);
-
 
   useEffect(() => {
     if (!monthTransactions || monthTransactions === [] || !token) {
@@ -91,7 +87,6 @@ export default function ExpencesAndIncomes({
     setDayTransactions(filerTransactions(monthTransactions));
   }, [date, monthTransactions, token]);
 
-
   useEffect(() => {
     if (type === 'расход') {
       return;
@@ -100,11 +95,11 @@ export default function ExpencesAndIncomes({
     formElement.current.reset();
   }, [type]);
 
-
   const handleSubmit = async e => {
     e.preventDefault();
 
     const { description, category, amount } = e.target;
+    const sumTrans = Number(amount.value).toFixed(2);
     if (!category.value) {
       Notify.failure('Выберите категорию', {
         timeout: 3000,
@@ -119,7 +114,7 @@ export default function ExpencesAndIncomes({
       type,
       category: category.value,
       date: stringifyDate,
-      amount: Number(amount.value),
+      amount: sumTrans,
       description: description.value,
     };
 
@@ -132,13 +127,11 @@ export default function ExpencesAndIncomes({
     setSubmit(true);
   };
 
-
   const clearForm = e => {
     setDate(initialDate);
     e.target.form.reset();
     setCategotyValue(null);
   };
-
 
   const changeDate = date => {
     setDate(date);

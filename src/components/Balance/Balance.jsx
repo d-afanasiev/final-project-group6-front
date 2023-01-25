@@ -66,7 +66,7 @@ function Balance({
             type="number"
             min="0"
             className={css.input}
-            placeholder={balance ? balance : '0'}
+            placeholder={balance ? balance.toFixed(2) : '0'}
             disabled={startBalance !== null && 'disabled'}
             onChange={handleChange}
           ></input>

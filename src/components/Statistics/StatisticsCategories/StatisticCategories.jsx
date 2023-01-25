@@ -73,13 +73,15 @@ export default function StatisticCategories({
       <ul className={css.statistics_list}>
         {res(iconsContainer).map((item, index) => (
           <li className={css.statistics_item} key={index}>
-            <span className={css.labels_style}>{item.Amount}</span>
+            <span className={css.labels_style}>{item.Amount.toFixed(2)}</span>
             <div className={css.wrapper_icon}>
-              <svg className={
-                activeBackground === index
-                  ? css.wrapper_background
-                  : css.background_hide
-              } >
+              <svg
+                className={
+                  activeBackground === index
+                    ? css.wrapper_background
+                    : css.background_hide
+                }
+              >
                 <use href={`${bgStatistic}#bg`} />
               </svg>
 
@@ -103,6 +105,6 @@ export default function StatisticCategories({
           </li>
         ))}
       </ul>
-    </div >
+    </div>
   );
 }
